@@ -1,10 +1,22 @@
 # Exercise 1
 def reduceFraction(num, den):
-    return None
+    #Adding Temp Variable    
+    a = num
+    b = den
+    #Calculate Greatest Common Divisor 
+    while b!=0:
+        c=a%b
+        a=b
+        b=c
+    #Calculate Smallest Fraction Terms
+    b=den/a
+    a=num/a
+    return (int(a),int(b))
 
 
 # Exercise 2
 def isMagicDate(day, month, year):
+
     return None
 
 
