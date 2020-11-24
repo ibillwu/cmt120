@@ -16,9 +16,12 @@ def reduceFraction(num, den):
 
 # Exercise 2
 def isMagicDate(day, month, year):
-
-    return None
-
+#Calculate Day*Month
+    left = day * month
+#Get Last 2 Digits of Year
+    right = year%100
+#Return Answer
+    return left == right
 
 # Exercise 3
 def sublist(l):
