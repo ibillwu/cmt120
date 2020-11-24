@@ -1,0 +1,28 @@
+First Commit
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# On branch master
+#
+# Initial commit
+#
+# Changes to be committed:
+#	new file:   Pipfile
+#	new file:   Pipfile.lock
+#	new file:   README.md
+#	new file:   js/template.js
+#	new file:   js/test_data/code1.js
+#	new file:   js/test_data/code2.js
+#	new file:   js/test_data/text1.txt
+#	new file:   js/test_template.js
+#	new file:   package-lock.json
+#	new file:   package.json
+#	new file:   python/template.py
+#	new file:   python/test_data/code1.py
+#	new file:   python/test_data/code2.py
+#	new file:   python/test_data/text1.txt
+#	new file:   python/test_template.py
+#
+# Untracked files:
+#	.gitlab-ci.yml
+#
