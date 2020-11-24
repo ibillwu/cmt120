@@ -25,12 +25,51 @@ def isMagicDate(day, month, year):
 
 # Exercise 3
 def sublist(l):
-    return None
+    #init output list
+    outlist = [[]]
+    # big cycle for step
+    for i in range(1,len(l)+1):
+    # small cycle for location
+        for j in range(0,len(l)-i+1):
+            outlist = outlist + [l[j:j+i]]
+    return(outlist)
 
 
 # Exercise 4
+#Define Vowel Identification
+def isVowel(a):
+    a=a.lower()
+    if a=="a" or a=="e" or a=="i" or a=="o" or a=="u":
+        return(True)
+    else:
+        return(False)
+
 def pigLatin(word):
-    return None
+    if isVowel(word[0]) or word[0].lower=="y":
+        if word[-1]!="!":
+            return(word+"way") 
+        else: 
+            return(word[0:len(word)-1]+"way!")
+    else:
+        #Record Upper Status
+        fls=word[0].isupper()
+        i=0 #Counter
+        #Get first Vowel
+        for i in range(len(word)):
+            if isVowel(word[i]):
+                start=i
+                break
+        #Determine First Letter Upper Status
+        if fls==True:
+            fl=word[start].upper()
+        else:
+            fl=word[start].lower()
+        #Output
+        if word[-1]!="!":
+            print(word[0:start])
+            return(fl+word[start+1:len(word)]+word[0:start].lower()+"ay") 
+        else: 
+            return(fl+word[start+1:len(word)-1]+word[0:start].lower()+"ay!")
 
 
 # Exercise 5
