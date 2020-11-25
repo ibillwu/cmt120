@@ -137,8 +137,63 @@ def morseCode(message):
 
 
 # Exercise 6
+def numberTransfer(inp):
+    #DefineDictionary
+    nums=dict()
+    nums={
+        '1':'one',
+        '2':'two',
+        '3':'three',
+        '4':'four',
+        '5':'five',
+        '6':'six',
+        '7':'seven',
+        '8':'eight',
+        '9':'nine',
+        '10':'ten',
+        '11':'eleven',
+        '12':'twelve',
+        '13':'thirteen',
+        '14':'fourteen',
+        '15':'fifteen',
+        '16':'sixteen',
+        '17':'seventeen',
+        '18':'eighteen',
+        '19':'nineteen',
+        '20':'twenty',
+        '30':'thirty',
+        '40':'fourty',
+        '50':'fifty',
+        '60':'sixty',
+        '70':'seventy',
+        '80':'eighty',
+        '90':'ninety'
+    }
+    return(nums[str(inp)])
+
+
 def int2Text(num):
-    return None
+    #init
+    textNum = ""
+    #Hundredth to Text
+    hun=num//100
+    if hun >= 1:
+        textNum+=numberTransfer(hun)+" hundred"
+    #get lower than onehundred
+    louHun=num%100
+    #get >= 20
+    if louHun >= 20:
+        ten=louHun-louHun % 10
+        louHun = louHun - ten
+        if textNum!="":
+            textNum+=" "
+        textNum+=numberTransfer(ten)
+        flag=1
+    if louHun !=0:
+        if textNum!="":
+            textNum+=" "
+        textNum += numberTransfer(louHun)
+    return textNum
 
 
 # Exercise 7
