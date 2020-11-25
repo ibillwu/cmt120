@@ -73,8 +73,67 @@ def pigLatin(word):
 
 
 # Exercise 5
+def morseAlp(i):
+    #define dictionary for alphabets
+    Alp=dict()
+    Alp={
+        'a':'.-',
+        'b':'-...',
+        'c':'-.-.',
+        'd':'-..',
+        'e':'.',
+        'f':'..-.',
+        'g':'--.',
+        'h':'....',
+        'i':'..',
+        'j':'.---',
+        'k':'-.-',
+        'l':'.-..',
+        'm':'--',
+        'n':'-.',
+        'o':'---',
+        'p':'.--.',
+        'q':'--.-',
+        'r':'.-.',
+        's':'...',
+        't':'-',
+        'u':'..-',
+        'v':'...-',
+        'w':'.--',
+        'x':'-..-',
+        'y':'-.--',
+        'z':'--..'
+    }
+    return(Alp[str.lower(i)])
+
+def morseDig(i):
+    #define dictionary for digits
+    Dig=dict()
+    Dig={
+        '1':'.----',
+        '2':'..---',
+        '3':'...--',
+        '4':'....-',
+        '5':'.....',
+        '6':'-....',
+        '7':'--...',
+        '8':'---..',
+        '9':'----.',
+        '0':'-----'
+    }
+    return (Dig[str(i)])
+
+
 def morseCode(message):
-    return None
+    #defineMorseMessage
+    morseMes=""
+    for i in range(len(message)):
+        if message[i].isdigit() == True:
+            morseMes+=morseDig(message[i])+" "
+        elif message[i].isalpha() == True:
+            morseMes+=morseAlp(message[i])+" "
+    #Slice Out the Last Char to Ensure No More Unnecessary Space
+    return (morseMes[0:len(morseMes)-1])
 
 
 # Exercise 6
