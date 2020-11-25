@@ -1,13 +1,16 @@
 // Exercise 1
 function reduceFraction(num, den) {
+//Adding Temp Variable    
     a=num;
     b=den;
+//Calculate Greatest Common Divisor 
     while(b!=0)
     {
         c=a%b;
         a=b;
         b=c;
     }
+//Calculate Smallest Fraction Terms
     b=den/a;
     a=num/a;
     return [parseInt(a),parseInt(b)];
@@ -15,7 +18,12 @@ function reduceFraction(num, den) {
 
 // Exercise 2
 function isMagicDate(day, month, year) {
-    return undefined;
+    let left,right;
+//Calculate Day*Month
+    left=day*month;
+//Get Last 2 Digits of Year
+    right=year%100;
+    return left==right;
 }
 
 // Exercise 3
