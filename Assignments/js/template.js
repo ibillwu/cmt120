@@ -1,6 +1,16 @@
 // Exercise 1
 function reduceFraction(num, den) {
-    return undefined;
+    a=num;
+    b=den;
+    while(b!=0)
+    {
+        c=a%b;
+        a=b;
+        b=c;
+    }
+    b=den/a;
+    a=num/a;
+    return [parseInt(a),parseInt(b)];
 }
 
 // Exercise 2
