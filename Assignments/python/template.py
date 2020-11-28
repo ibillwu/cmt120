@@ -1,16 +1,14 @@
 # Exercise 1
 def reduceFraction(num, den):
+    import math
     #Adding Temp Variable    
     a = num
     b = den
     #Calculate Greatest Common Divisor 
-    while b!=0:
-        c=a%b
-        a=b
-        b=c
+    c=math.gcd(a,b)
     #Calculate Smallest Fraction Terms
-    b=den/a
-    a=num/a
+    b=den/c
+    a=num/c
     return (int(a),int(b))
 
 
@@ -162,7 +160,7 @@ def numberTransfer(inp):
         '19':'nineteen',
         '20':'twenty',
         '30':'thirty',
-        '40':'fourty',
+        '40':'forty',
         '50':'fifty',
         '60':'sixty',
         '70':'seventy',
@@ -188,7 +186,6 @@ def int2Text(num):
         if textNum!="":
             textNum+=" "
         textNum+=numberTransfer(ten)
-        flag=1
     if louHun !=0:
         if textNum!="":
             textNum+=" "
@@ -198,11 +195,26 @@ def int2Text(num):
 
 # Exercise 7
 def missingComment(filename):
-    return None
-
+    file = open(filename)
+    flag = 0
+    outList = list()
+    for line in file:
+        if "#" in line: #Add flag for notes
+            flag = 1
+        elif 'def' in line:
+            if flag == 1:
+                flag = 0
+            else:
+                temp = line[4:] #Get rid of def
+                temp = temp.split("(") #Get rid of everything after (
+                print(temp)
+                outList.append(temp[0]) #Add to the list
+    return outList
 
 # Exercise 8
 def consistentLineLength(filename, length):
+    file = open(filename)
+    
     return None
 
 

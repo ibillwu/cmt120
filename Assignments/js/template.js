@@ -1,8 +1,9 @@
 // Exercise 1
 function reduceFraction(num, den) {
 //Adding Temp Variable    
-    a=num;
-    b=den;
+    var a=num;
+    var b=den;
+    var a,b,c;
 //Calculate Greatest Common Divisor 
     while(b!=0)
     {
@@ -28,8 +29,18 @@ function isMagicDate(day, month, year) {
 
 // Exercise 3
 function sublist(l) {
-    return undefined;
+    var outlist = array([[]]);
+    var i,j;
+    for (i=0;i<=l.length;i++)
+    {
+        for (j=0;j<=l.length-i;j++)
+        {
+            outlist=outlist.append(l.slice(j,j+i));
+        }
+    }
+    return outlist;   
 }
+
 
 // Exercise 4
 function pigLatin(word) {

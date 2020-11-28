@@ -93,8 +93,8 @@ describe("morseCode()", () => {
 });
 
 describe("int2Text()", () => {
-    it("should return 'one hundred fourty two' when given the input 142", () => {
-        expect(funcsToTest.int2Text(142)).to.be.eql("one hundred fourty two");
+    it("should return 'one hundred forty two' when given the input 142", () => {
+        expect(funcsToTest.int2Text(142)).to.be.eql("one hundred forty two");
     });
     it("should return 'three hundred' when given the input 300", () => {
         expect(funcsToTest.int2Text(300)).to.be.eql("three hundred");
