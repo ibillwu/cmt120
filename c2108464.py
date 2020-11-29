@@ -1,10 +1,15 @@
 # Exercise 1
 def reduceFraction(num, den):
     import math
+    #Adding Temp Variable    
+    a = num
+    b = den
     #Calculate Greatest Common Divisor 
-    c=math.gcd(num,den)
+    c=math.gcd(a,b)
     #Calculate Smallest Fraction Terms
-    return (int(num/c),int(den/c))
+    b=den/c
+    a=num/c
+    return (int(a),int(b))
 
 
 # Exercise 2
@@ -59,6 +64,7 @@ def pigLatin(word):
             fl=word[start].lower()
         #Output
         if word[-1]!="!":
+            print(word[0:start])
             return(fl+word[start+1:len(word)]+word[0:start].lower()+"ay") 
         else: 
             return(fl+word[start+1:len(word)-1]+word[0:start].lower()+"ay!")
@@ -211,6 +217,7 @@ def consistentLineLength(filename, length):
     text = str("") 
     templine = ""
     outText = list([]) #setting temp variables
+    lineNo = 0
     for line in file:#get every line in one variable, remove \n and add " " to the end of each line
         text+=line.strip()+" "
     text=text.split(" ")#split the string by space
