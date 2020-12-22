@@ -201,7 +201,6 @@ def missingComment(filename):
             else:
                 temp = line[4:] #Get rid of def
                 temp = temp.split("(") #Get rid of everything after (
-                print(temp)
                 outList.append(temp[0]) #Add to the list
     return outList
 

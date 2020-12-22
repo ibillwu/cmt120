@@ -1,3 +1,4 @@
+const fs = require('fs');
 // Exercise 1
 function reduceFraction(num, den) {
 //Adding Temp Variable    
@@ -92,23 +93,198 @@ function pigLatin(word)
 }
 
 // Exercise 5
+// Exercise 5
+function morseAlp(i){
+    let Alp = 
+    {
+        'a':'.-',
+        'b':'-...',
+        'c':'-.-.',
+        'd':'-..',
+        'e':'.',
+        'f':'..-.',
+        'g':'--.',
+        'h':'....',
+        'i':'..',
+        'j':'.---',
+        'k':'-.-',
+        'l':'.-..',
+        'm':'--',
+        'n':'-.',
+        'o':'---',
+        'p':'.--.',
+        'q':'--.-',
+        'r':'.-.',
+        's':'...',
+        't':'-',
+        'u':'..-',
+        'v':'...-',
+        'w':'.--',
+        'x':'-..-',
+        'y':'-.--',
+        'z':'--..'
+    };
+    return Alp[i.toLowerCase()];
+}
+
+function morseDig(i)
+{    
+    let Dig={
+        '1':'.----',
+        '2':'..---',
+        '3':'...--',
+        '4':'....-',
+        '5':'.....',
+        '6':'-....',
+        '7':'--...',
+        '8':'---..',
+        '9':'----.',
+        '0':'-----'
+    };
+    return Dig[i];
+}
+
 function morseCode(message) {
-    return undefined
+    let morseMes="";
+    for (i=0;i<=message.length;i++)
+    {
+        if (message[i] >= '0' & message[i] <= '9') {
+            morseMes+=morseDig(message[i])+" ";
+        }
+        else if (message[i]>='a' & message[i]<='z' || message[i]>='A' & message[i]<='Z' ) {
+            morseMes+=morseAlp(message[i])+" ";
+        }
+    }
+    return morseMes.slice(0, morseMes.length-1);
 }
 
 // Exercise 6
+function numberTransfer(inp){
+    nums={
+        '1':'one',
+        '2':'two',
+        '3':'three',
+        '4':'four',
+        '5':'five',
+        '6':'six',
+        '7':'seven',
+        '8':'eight',
+        '9':'nine',
+        '10':'ten',
+        '11':'eleven',
+        '12':'twelve',
+        '13':'thirteen',
+        '14':'fourteen',
+        '15':'fifteen',
+        '16':'sixteen',
+        '17':'seventeen',
+        '18':'eighteen',
+        '19':'nineteen',
+        '20':'twenty',
+        '30':'thirty',
+        '40':'forty',
+        '50':'fifty',
+        '60':'sixty',
+        '70':'seventy',
+        '80':'eighty',
+        '90':'ninety'
+    };
+    return(nums[inp.toString()]);
+}
+
 function int2Text(num) {
-    return undefined
+    let textNum = "";
+    //Hundredth to Text
+    let hun=parseInt(num/100);
+    if (hun >= 1){
+        textNum+=numberTransfer(hun)+" hundred";
+    }
+    //get lower than onehundred
+    let louHun=num%100;
+    // get >= 20
+    if (louHun >= 20){
+        ten=louHun-louHun % 10;
+        louHun = louHun - ten;
+        if (textNum!="")
+            textNum+=" ";
+        textNum+=numberTransfer(ten);
+    }
+    if (louHun !=0)
+    {
+        if (textNum!="")
+            {
+                textNum+=" ";
+            }
+        textNum += numberTransfer(louHun);
+    }
+    return (textNum);
 }
 
 // Exercise 7
 function missingComment(filename) {
-    return undefined
+    let data1 = fs.readFileSync(filename, "utf8");
+    flag = 0;
+    file=data1.split("\n");
+    outList = [];
+    for (c=0;c<file.length;c++)
+    {
+        if (file[c].includes("//")) //Split file by lines
+        {
+            flag = 1;
+        }
+        else if (file[c].includes("function"))
+        {
+            if (flag==1)
+                flag = 0;
+            else
+                {
+                    temp = file[c].slice(9); //Get rid of function
+                    temp = temp.split("("); //Get rid of everything after (
+                    outList.push(temp[0]); //Add to the list
+                }
+        }
+    }
+    return outList;
 }
 
-// Exercise 8
+// // Exercise 8
 function consistentLineLength(filename, length) {
-    return undefined
+    let data2 = fs.readFileSync(filename, "utf8"); //import
+    let text = "";
+    let templine = "";
+    outText = []; //setting temp variables 
+    letters=[];
+    for (let letter=0;letter<data2.length;letter++)
+    {
+        if (data2[letter]=="\n") 
+        {
+            letters.push(" ");
+        }
+        else
+        {
+            letters.push(data2[letter]);
+        }
+    }
+    words=letters.join("").split(" ");
+    templine="";
+    for(sn=0;sn<words.length;sn++)
+    {
+        if (words[sn]!="")
+        {
+            if (templine.length+words[sn].length>=length)
+            {
+                outText.push(templine);
+                templine="";
+            }
+            if (templine!="")
+                {
+                    templine+=" ";
+                }
+            templine+=words[sn];
+        }
+    }
+    outText.push(templine);
+    return outText
 }
 
 // Exercise 9
