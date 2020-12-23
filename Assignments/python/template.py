@@ -215,20 +215,73 @@ def consistentLineLength(filename, length):
     text=text.split(" ")#split the string by space
     for i in text:
         if len(templine)+len(i)>=length:
-            outText.append(templine[0:len(templine)])
+            outText.append(templine)
             templine=""
-        if templine!="" and i != '':
+        if templine!="" and i!='':
             templine+=" "
         templine+=i
-    outText.append(templine[0:len(templine)])
+    outText.append(templine)
     return outText
-
 
 # Exercise 9
 def knight(start, end, moves):
-    return None
+    flag = False
+    steps=[start]
+    now = start
+    direction = [1,1]
+    move=[(1,2),(2,1)]
+    for i in range(moves):
+        newsteps=[]
+        for step in steps:
+            for i in range(2):
+                if step[i]>end[i]:
+                    direction[i]=-1
+                else:
+                    direction[i]=1
+            for x,y in move:
+                dx=x*direction[0]
+                dy=y*direction[1]
+                if "a" <= chr(ord(step[0])+dx) <= "z" and "1" <= chr(ord(step[1])+dy) <= "8":
+                    newstep = "".join([chr(ord(step[0])+dx),chr(ord(step[1])+dy)])
+                    if newstep==end:
+                        return True
+                    newsteps.append(newstep)
+        steps=newsteps
+    return False
 
 
 # Exercise 10
+def runEight(inVar,x,y):
+    sitrep=dict() #Initialize Dict
+    for i in range(-1,2):
+        for j in range(-1,2):
+            # Check if the pointer exist, and check if it's not "."
+            if x+i in range(len(inVar)) and y+j in range(len(inVar[x])) and inVar[x+i][y+j]!="." and not i==j==0:
+                # Add the status into the dictionary
+                if inVar[x+i][y+j] in sitrep:
+                    sitrep[inVar[x+i][y+j]]+=1
+                else:
+                    sitrep[inVar[x+i][y+j]]=1
+    if len(sitrep)==0:
+        out="."
+    else:
+        if inVar[x][y]==".":
+            if sitrep[max(sitrep,key=sitrep.get)]>=2:
+                out=max(sitrep,key=sitrep.get)
+            else:
+                out="."
+        else:
+            if sum(sitrep.values())>6 or sitrep[inVar[x][y]]<3 or max(sitrep,key=sitrep.get)!=inVar[x][y]:
+                out="."
+            else:
+                out=inVar[x][y]
+    return out
+
 def warOfSpecies(environment):
-    return None
+    outPut=[]
+    for linen,line in enumerate(environment):
+        temp = []
+        for charn,char in enumerate(line):
+            temp.append(runEight(environment,linen,charn))
+        outPut.append("".join(temp))
+    return outPut
