@@ -289,12 +289,106 @@ function consistentLineLength(filename, length) {
 
 // Exercise 9
 function knight(start, end, moves) {
-    return undefined
+    let steps=[start];
+    let direction = [1,1];
+    let move=[[1,2],[2,1]];
+    let newsteps=[];
+    let ends=end.split("");
+    for (i=1;i<=moves;i++)
+    {
+        newsteps=[];
+        for (j=0;j<steps.length;j++)
+        {
+            d=steps[j].split("");
+            for (k=0;k<=1;k++)
+            {
+                if (d[k]>ends[k])
+                    {direction[k]=-1;}
+                else
+                    {direction[k]=1;}
+            }
+            for (l=0;l<move.length;l++)
+                {
+                    dx=move[l][0]*direction[0];
+                    dy=move[l][1]*direction[1];
+                    if ((d[0].charCodeAt()+dx)>= 97 & d[0].charCodeAt()+dx <= 122 & (d[1].charCodeAt()+dy) >= 49 & (d[1].charCodeAt()+dy)<=56)
+                        {
+                            let newstep=""
+                            newstep = String.fromCharCode(d[0].charCodeAt()+dx)+String.fromCharCode(d[1].charCodeAt()+dy);
+                            if (newstep==end)
+                                {return true;}
+                            newsteps.push(newstep);
+                        }
+                }
+        }
+        steps=newsteps;
+    }
+    return false;
 }
 
 // Exercise 10
+function runEight(inVar,x,y){
+    let sitrep={"O":0,"X":0}; 
+    let cur=inVar[x][y];
+    if (cur == "O") other = "X";
+    if (cur == "X") other = "O";
+    for (i=-1;i<=1;i++)
+        for (j=-1;j<=1;j++)
+        {
+            
+            if(x+i >= 0 & (x+i) < inVar.length & y+j >= 0 & y+j < inVar[x].length & (i!=0||j!=0) )
+            {
+                c=inVar[x+i][y+j]
+                sitrep[c]+=1
+            }
+        }  
+    if (cur==".")
+    {
+        if (sitrep["X"]>sitrep["O"] & sitrep["X"]>=2)
+        {
+            out = "X";
+        }
+        else if (sitrep["O"]>sitrep["X"] & sitrep["O"]>=2)
+        {
+            out = "O";
+        }
+        else
+        {
+            out=".";
+        }
+    }
+    else
+    {
+        if (sitrep["O"]+sitrep["X"]>6 || sitrep[cur]<3 || sitrep[cur]<sitrep[other])
+        {
+            out = ".";
+        }
+        else
+        {
+            out = cur;
+        }
+    }
+    return out;
+}
+
+
 function warOfSpecies(environment) {
-    return undefined
+    let outPut=[];
+    let env=[];
+    for(let linen=0;linen<environment.length;linen++)
+    {
+        env.push(environment[linen].split(""));
+    }
+    for(let linen=0;linen<env.length;linen++)
+    {
+        let temp = [];
+        for(charn=0;charn<env[linen].length;charn++)
+        {
+            temp.push(runEight(env,linen,charn));
+        }
+        outPut.push(temp.join(""));
+    }
+    return outPut;
 }
 
 module.exports = {

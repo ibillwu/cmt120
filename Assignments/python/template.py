@@ -225,9 +225,7 @@ def consistentLineLength(filename, length):
 
 # Exercise 9
 def knight(start, end, moves):
-    flag = False
     steps=[start]
-    now = start
     direction = [1,1]
     move=[(1,2),(2,1)]
     for i in range(moves):
