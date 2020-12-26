@@ -93,7 +93,7 @@ function pigLatin(word)
 }
 
 // Exercise 5
-// Exercise 5
+// Convert Alphabets into Morse Code
 function morseAlp(i){
     let Alp = 
     {
@@ -127,6 +127,7 @@ function morseAlp(i){
     return Alp[i.toLowerCase()];
 }
 
+//Convert Digits into Morse Code
 function morseDig(i)
 {    
     let Dig={
@@ -146,6 +147,7 @@ function morseDig(i)
 
 function morseCode(message) {
     let morseMes="";
+    // Read Every single char in the message
     for (i=0;i<=message.length;i++)
     {
         if (message[i] >= '0' & message[i] <= '9') {
@@ -155,6 +157,7 @@ function morseCode(message) {
             morseMes+=morseAlp(message[i])+" ";
         }
     }
+    // Eliminate the last space in the string
     return morseMes.slice(0, morseMes.length-1);
 }
 
@@ -254,7 +257,7 @@ function consistentLineLength(filename, length) {
     let templine = "";
     outText = []; //setting temp variables 
     letters=[];
-    for (let letter=0;letter<data2.length;letter++)
+    for (let letter=0;letter<data2.length;letter++) // Eliminate the /n in the end of each line
     {
         if (data2[letter]=="\n") 
         {
@@ -265,7 +268,7 @@ function consistentLineLength(filename, length) {
             letters.push(data2[letter]);
         }
     }
-    words=letters.join("").split(" ");
+    words=letters.join("").split(" ");// Divide the Words by Space
     templine="";
     for(sn=0;sn<words.length;sn++)
     {
