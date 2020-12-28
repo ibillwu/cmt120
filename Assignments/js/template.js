@@ -57,10 +57,11 @@ function isVowel(a)
 function pigLatin(word) 
 {
     let uc;
+    let start=-1;
     if (isVowel(word[0])==true || word[0].toLowerCase()=="y")
     // Check if the first letter is Vowel
     {
-        if (word[word.length]!="!") return word+"way";
+        if (word[word.length-1]!="!") return word+"way";
         else return word.slice(0,word.length-1)+"way!"
     }
     else
@@ -71,23 +72,31 @@ function pigLatin(word)
         {
             if (isVowel(word[sn])==true)
             {
-                var start = sn;
+                start = sn;
                 break;
             }
         }
-        if (uc==1)
+        if (start == -1)
         {
-            fl=word[start].toUpperCase();
+            if (word[word.length-1]!="!") return word+"way";
+            else return word.slice(0,word.length-1)+"way!"
         }
-        else fl=word[start].toLowerCase();
-        bh=word.slice(0,start);
-        if (word[word.length-1]!="!")
+        else 
         {
-            return(fl+word.slice(start+1,word.length)+bh.toLowerCase()+"ay");
-        }
-        else
-        {
-            return(fl+word.slice(start+1,word.length-1)+bh.toLowerCase()+"ay!");
+            if (uc==1)
+            {
+                fl=word[start].toUpperCase();
+            }
+            else fl=word[start].toLowerCase();
+            bh=word.slice(0,start);
+            if (word[word.length-1]!="!")
+            {
+                return(fl+word.slice(start+1,word.length)+bh.toLowerCase()+"ay");
+            }
+            else
+            {
+                return(fl+word.slice(start+1,word.length-1)+bh.toLowerCase()+"ay!");
+            }
         }
     }
 }
@@ -164,6 +173,7 @@ function morseCode(message) {
 // Exercise 6
 function numberTransfer(inp){
     nums={
+        '0':'zero',
         '1':'one',
         '2':'two',
         '3':'three',
@@ -212,7 +222,7 @@ function int2Text(num) {
             textNum+=" ";
         textNum+=numberTransfer(ten);
     }
-    if (louHun !=0)
+    if (louHun !=0 || textNum=="")
     {
         if (textNum!="")
             {

@@ -38,6 +38,7 @@ def isVowel(a):
         return(False)
 
 def pigLatin(word):
+    start = -1
     if isVowel(word[0]) or word[0].lower=="y":
         if word[-1]!="!":
             return(word+"way") 
@@ -53,15 +54,21 @@ def pigLatin(word):
                 start=i
                 break
         #Determine First Letter Upper Status
-        if fls==True:
-            fl=word[start].upper()
-        else:
-            fl=word[start].lower()
         #Output
-        if word[-1]!="!":
-            return(fl+word[start+1:len(word)]+word[0:start].lower()+"ay") 
-        else: 
-            return(fl+word[start+1:len(word)-1]+word[0:start].lower()+"ay!")
+        if start == -1:
+            if word[-1]!="!":
+                return(word+"way") 
+            else: 
+                return(word[0:len(word)-1]+"way!")
+        else:
+            if fls==True:
+                fl=word[start].upper()
+            else:
+                fl=word[start].lower()
+            if word[-1]!="!":
+                return(fl+word[start+1:len(word)]+word[0:start].lower()+"ay") 
+            else: 
+                return(fl+word[start+1:len(word)-1]+word[0:start].lower()+"ay!")
 
 
 # Exercise 5
@@ -133,6 +140,7 @@ def numberTransfer(inp):
     #DefineDictionary
     nums=dict()
     nums={
+        '0':'zero',
         '1':'one',
         '2':'two',
         '3':'three',
@@ -180,7 +188,7 @@ def int2Text(num):
         if textNum!="":
             textNum+=" "
         textNum+=numberTransfer(ten)
-    if louHun !=0:
+    if louHun !=0 or textNum=="":
         if textNum!="":
             textNum+=" "
         textNum += numberTransfer(louHun)
