@@ -40,10 +40,10 @@ def isVowel(a):
 def pigLatin(word):
     start = -1
     if isVowel(word[0]) or word[0].lower=="y":
-        if word[-1]!="!":
+        if word[-1].isalnum()==True:
             return(word+"way") 
         else: 
-            return(word[0:len(word)-1]+"way!")
+            return(word[0:len(word)-1]+"way"+word[-1])
     else:
         #Record Upper Status
         fls=word[0].isupper()
@@ -56,19 +56,19 @@ def pigLatin(word):
         #Determine First Letter Upper Status
         #Output
         if start == -1:
-            if word[-1]!="!":
+            if word[-1].isalnum()==True:
                 return(word+"way") 
             else: 
-                return(word[0:len(word)-1]+"way!")
+                return(word[0:len(word)-1]+"way"+word[-1])
         else:
             if fls==True:
                 fl=word[start].upper()
             else:
                 fl=word[start].lower()
-            if word[-1]!="!":
+            if word[-1].isalnum()==True:
                 return(fl+word[start+1:len(word)]+word[0:start].lower()+"ay") 
             else: 
-                return(fl+word[start+1:len(word)-1]+word[0:start].lower()+"ay!")
+                return(fl+word[start+1:len(word)-1]+word[0:start].lower()+"ay"+word[-1])
 
 
 # Exercise 5

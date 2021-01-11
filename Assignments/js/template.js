@@ -54,6 +54,14 @@ function isVowel(a)
     else return false;
 }
 
+function isAlphaNum(a){
+    if (a<="Z" && a>="A" || a<="z" && a>="a" || a<="9" && a>="0")
+    {
+        return true;
+    }
+    else return false;
+}
+
 function pigLatin(word) 
 {
     let uc;
@@ -61,8 +69,8 @@ function pigLatin(word)
     if (isVowel(word[0])==true || word[0].toLowerCase()=="y")
     // Check if the first letter is Vowel
     {
-        if (word[word.length-1]!="!") return word+"way";
-        else return word.slice(0,word.length-1)+"way!"
+        if (isAlphaNum(word[word.length-1])==true) return word+"way";
+        else return word.slice(0,word.length-1)+"way"+word[word.length-1]
     }
     else
     {
@@ -78,8 +86,8 @@ function pigLatin(word)
         }
         if (start == -1)
         {
-            if (word[word.length-1]!="!") return word+"way";
-            else return word.slice(0,word.length-1)+"way!"
+            if (isAlphaNum(word[word.length-1])==true) return word+"way";
+            else return word.slice(0,word.length-1)+"way"+word[word.length-1];
         }
         else 
         {
@@ -89,13 +97,13 @@ function pigLatin(word)
             }
             else fl=word[start].toLowerCase();
             bh=word.slice(0,start);
-            if (word[word.length-1]!="!")
+            if (isAlphaNum(word[word.length-1])==true)
             {
                 return(fl+word.slice(start+1,word.length)+bh.toLowerCase()+"ay");
             }
             else
             {
-                return(fl+word.slice(start+1,word.length-1)+bh.toLowerCase()+"ay!");
+                return(fl+word.slice(start+1,word.length-1)+bh.toLowerCase()+"ay"+word[word.length-1]);
             }
         }
     }
