@@ -66,7 +66,7 @@ function pigLatin(word)
 {
     let uc;
     let start=-1;
-    if (isVowel(word[0])==true || word[0].toLowerCase()=="y")
+    if (isVowel(word[0])==true)
     // Check if the first letter is Vowel
     {
         if (isAlphaNum(word[word.length-1])==true) return word+"way";
@@ -264,6 +264,10 @@ function missingComment(filename) {
                     outList.push(temp[0]); //Add to the list
                 }
         }
+        else if (flag==1)
+        {
+            flag=0;
+        }
     }
     return outList;
 }
@@ -304,7 +308,7 @@ function consistentLineLength(filename, length) {
             templine+=words[sn];
         }
     }
-    outText.push(templine);
+    if (templine!="") outText.push(templine);
     return outText
 }
 

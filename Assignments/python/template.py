@@ -39,7 +39,7 @@ def isVowel(a):
 
 def pigLatin(word):
     start = -1
-    if isVowel(word[0]) or word[0].lower=="y":
+    if isVowel(word[0]):
         if word[-1].isalnum()==True:
             return(word+"way") 
         else: 
@@ -210,6 +210,8 @@ def missingComment(filename):
                 temp = line[4:] #Get rid of def
                 temp = temp.split("(") #Get rid of everything after (
                 outList.append(temp[0]) #Add to the list
+        elif flag == 1:
+            flag = 0
     return outList
 
 # Exercise 8
@@ -228,7 +230,8 @@ def consistentLineLength(filename, length):
         if templine!="" and i!='':
             templine+=" "
         templine+=i
-    outText.append(templine)
+    if templine!="":
+        outText.append(templine)
     return outText
 
 # Exercise 9
@@ -258,21 +261,22 @@ def knight(start, end, moves):
 
 # Exercise 10
 def runEight(inVar,x,y):
-    sitrep=dict() #Initialize Dict
+    sitrep=dict()
+    sitrep={
+        'X':0 ,
+        'O':0
+        } #Initialize Dict
     for i in range(-1,2):
         for j in range(-1,2):
             # Check if the pointer exist, and check if it's not "."
             if x+i in range(len(inVar)) and y+j in range(len(inVar[x])) and inVar[x+i][y+j]!="." and not i==j==0:
                 # Add the status into the dictionary
-                if inVar[x+i][y+j] in sitrep:
-                    sitrep[inVar[x+i][y+j]]+=1
-                else:
-                    sitrep[inVar[x+i][y+j]]=1
+                sitrep[inVar[x+i][y+j]]+=1
     if len(sitrep)==0:
         out="."
     else:
         if inVar[x][y]==".":
-            if sitrep[max(sitrep,key=sitrep.get)]>=2:
+            if sitrep[max(sitrep,key=sitrep.get)]>=2 and sitrep["O"]!=sitrep["X"]:
                 out=max(sitrep,key=sitrep.get)
             else:
                 out="."
