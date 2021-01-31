@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form>
+        <p>
+            <ul id="box">
+            </ul>
+        </p>
+        <p id="control"  >
+            <input type="button" value="High" id="high">
+            <input type="button" value="Low" id="low">
+            <input type="button" value="Equal" id="equal"> 
+            <input type="button" value="Reset" id="reset"> 
+        </p>
+    </form>
+    <script>
+        function addElement(income,type,info){
+            let newListItem = document.createElement(type);
+            newListItem.appendChild(document.createTextNode(info));
+            income.appendChild(newListItem);
+        }
+        function doReset(){
+            addElement(box,"li","This is it.")
+        }
+
+        let high=document.getElementById("high")
+        let low=document.getElementById("low")
+        let equal=document.getElementById("equal")
+        let reset=document.getElementById("reset")
+        let box=document.getElementById("box")
+        reset.addEventListener("click",doReset)
+    </script>
+</body>
+</html>

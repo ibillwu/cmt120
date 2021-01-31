@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form>
+        <div>
+            <label for="firstNumber">Please input first number:</label>
+            <input type="text" name="firstNumber" id="firstNumber">
+        </div>
+        <div>
+            <label for="secondNumber">Please input second number:</label>
+            <input type="text" name="secondNumber" id="secondNumber">
+        </div>
+        <div>
+            <label for="thirdNumber">Please input third number:</label>
+            <input type="text" name="thirdNumber" id="thirdNumber">
+        </div>
+        <button type="button" id="btn">Calculate</button>
+    </form>
+    <div id="answer"></div>
+    <script>
+        let doCal=function(){
+            console.log(parseInt(first.value),parseInt(second.value),parseInt(third.value));
+            answer=parseInt(first.value)*parseInt(second.value)*parseInt(third.value);
+            alert("The answer is "+answer);
+            answerOutput.appendChild(document.createTextNode(first.value+"*"+second.value+"*"+third.value+"="+answer));
+        };
+        ifClicked=document.getElementById("btn");
+        first=document.getElementById("firstNumber");
+        second=document.getElementById("secondNumber");
+        third=document.getElementById("thirdNumber");
+        answerOutput=document.getElementById("answer");
+        ifClicked.addEventListener("click",doCal);
+        // a=parseInt(prompt("Please input first number"));
+        // b=parseInt(prompt("Please input second number"));
+        // c=parseInt(prompt("Please input third number"));
+        // d=a*b*c;
+        // alert(d);
+    </script>
+</body>
+</html>
